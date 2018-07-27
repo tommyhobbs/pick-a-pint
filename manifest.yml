@@ -3,7 +3,7 @@ applications:
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   memory: 64M
   instances: 1
-  domain: eu-gb.mybluemix.net
+  domain: us-east.mybluemix.net
   name: pick-a-pint
   host: pick-a-pint
   stack: cflinuxfs2
