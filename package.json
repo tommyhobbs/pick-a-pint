@@ -3,17 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gyronorm": "^2.0.6",
+    "node-sass-chokidar": "^1.3.0",
+    "npm-run-all": "^4.1.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
+    "react-device-orientation": "0.0.2",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-snapshot": "^1.3.0",
-    "styled-components": "^3.3.3",
-    "node-sass-chokidar": "^1.3.0",
-    "npm-run-all": "^4.1.3"
+    "styled-components": "^3.3.3"
   },
   "scripts": {
     "start-js": "react-scripts start",

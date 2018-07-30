@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import linkedIn from './LinkedIn-66px.png';
 import gitHub from './GitHub-64px.png';
+import PintBackground from './components/pintBackground/PintBackground';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
         <div className="Content">
           <p className="Intro">
             Currently in development so please, watch this space!
-          </p> 
+          </p>
+          <PintBackground />
         </div>
         <div className="Footer">
           <a href='https://www.linkedin.com/in/tomghobbs/' target="_blank" rel="noopener noreferrer">
