@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import linkedIn from './LinkedIn-66px.png';
-import gitHub from './GitHub-64px.png';
+import linkedIn from './assets/LinkedIn-66px.png';
+import gitHub from './assets/GitHub-64px.png';
 import PintBackground from './components/pintBackground/PintBackground';
 import './App.css';
 

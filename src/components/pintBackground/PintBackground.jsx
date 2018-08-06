@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import DeviceOrientation from 'react-device-orientation';
+import beer from '../../assets/beer.png';
 import './pintBackground.css';
 
 const PintBackground = (props) => {
@@ -8,7 +9,8 @@ const PintBackground = (props) => {
     <DeviceOrientation>
       {({ absolute, alpha, beta, gamma }) => (
         <div className="PintBackground">
-          {`I'M A BEER HEAR ME POUR! Gamma: ${gamma}`}
+          <p>{`Gamma: ${gamma}`}</p>
+          <img src={beer} style={{width: '200px', paddingLeft: '50px', transform: `rotate(${gamma}deg)`}}/>
         </div>
       )}
   </DeviceOrientation>
