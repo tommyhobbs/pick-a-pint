@@ -1,6 +1,6 @@
 import React from 'react';
-import DeviceOrientation from 'react-device-orientation';
 // import PropTypes from 'prop-types';
+import DeviceOrientation from 'react-device-orientation';
 import './pintBackground.css';
 
 const PintBackground = (props) => {

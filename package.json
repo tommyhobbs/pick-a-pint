@@ -32,6 +32,7 @@
     "serve": "npm run build && bx cf push"
   },
   "devDependencies": {
+    "jest": "^23.4.2",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3"
   },
