@@ -16,8 +16,8 @@ describe('Pint calculation tests', () => {
 
     it('should reduce the amount of beer if a new pint is tipped sufficiently', () => {
       const beer = freshPint(glass, 0.8);
-      const newBeer = tip(30, beer, glass);
-      expect(newBeer.height < beer.height).toBe(true);
+      let newBeer = tip(30, beer, glass);
+      expect(newBeer.height).toBeLessThan(beer.height);
     });
   });
 });

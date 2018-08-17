@@ -2,46 +2,17 @@ export const getGlass = (width, height) => {
   return { 
     width: width,
     height: height,
-    area: {
-      initial: width * height,
-      available: width * height,
-    },
-    diameter: Math.sqrt((width * width) * (height * height)),
-    verticalHeight: height,
   }
 };
 
 export const freshPint = (glass, fillAmount) => {
   const beer = { 
     width: 2 * glass.height,
-    height: glass.area.initial * fillAmount / glass.width,
+    height: glass.height * fillAmount,
   };
   console.log('beer:', beer);
   return beer;
 }
-
-const glass = getGlass(40, 100);
-const beer = freshPint(glass, 0.9);
-
-// const drink = (angle, glassBeforePour) => {
-//   // const interval = 5;
-//   // for (i = 0; i < interval; i++) {
-//   //   return setInterval((beer) => { 
-//   //     return {
-//   //       area: beer.area - (overflow.area / interval),
-//   //       verticalHeight: glass.area * fillAmount / glass.width,
-//   //     }
-//   //    }, 100);
-//   // };
-
-//   const glass = calculateGlassAvailable(angle, glassBeforePour);
-//   const beer = { 
-//     area: glass.area.available,
-//     height: glass.height,
-//   };
-
-//   return beer;
-// };
 
 export const tip = (angle, beer, glass) => {
   // pour clockwise
@@ -56,5 +27,27 @@ export const tip = (angle, beer, glass) => {
     height: newHeight,
   };
   console.log('newBeer: ', newBeer);
+  
+  // return drink(beer, newBeer);
   return newBeer;
-}
+};
+
+export const drink = (oldBeer, newBeer) => {
+  const interval = 5;
+  const diff = oldBeer.height - newBeer.height;
+  console.log('diff: ', diff);
+  const step = diff / interval;
+  console.log('step: ', step);
+  let beer = oldBeer;
+  for (let i = 0; i < interval; i++) {
+    // eslint-disable-next-line 
+    setTimeout(() => { 
+      beer = {
+        width: beer.width,
+        height: oldBeer.height - (step * interval),
+      }
+      console.log('beer getting poured: ',beer);
+     }, 200);    
+  };
+  return beer;
+};
