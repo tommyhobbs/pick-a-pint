@@ -11,7 +11,7 @@ class App extends Component {
     const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground />));
     const dataUri = `url("data:image/svg+xml,${svgString}")`;
     return (
-      <div className="App" style={{background: dataUri}}>
+      <div className="App" style={{background: dataUri, width: window.innerWidth, height: window.innerHeight}}>
         <Helmet title="Pick a Pint" />
         <div className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" />

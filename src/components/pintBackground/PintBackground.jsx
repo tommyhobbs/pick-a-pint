@@ -12,7 +12,7 @@ const PintBackground = (props) => {
     <DeviceOrientation>
       {({ absolute, alpha, beta, gamma }) => (
         <svg width={glass.width} height={glass.height}>
-          <rect width={beer.width} height={pintCalculations.tip(gamma, freshPint, glass).height} style={{fill: 'rgb(0,0,255)', strokeWidth: 3, stroke: 'rgb(0,0,0)', transform: `rotate(${gamma}deg)`}} />
+          <rect width={beer.width} height={pintCalculations.tip(gamma, freshPint, glass).height} style={{fill: '#F3CD57', transform: `rotate(${gamma}deg)`}} />
         </svg>
       )}
   </DeviceOrientation>

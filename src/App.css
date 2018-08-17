@@ -5,12 +5,12 @@
   height: 100vh;
   font-family: 'Roboto';
   text-align: center;
-  background-color: #F3CD57;
+  /* background-color: #F3CD57; */
   color: black;
 }
 
 .App-header {
-  background-color: #F5EBDA;
+  /* background-color: #F5EBDA; */
   height: 100px;
   padding: 20px;
   color: black;
