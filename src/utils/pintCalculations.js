@@ -11,48 +11,50 @@ export const getGlass = (width, height) => {
   }
 };
 
-// export const isBeerTriangle = (angle, beer, glass) => {
-// }
-
 export const freshPint = (glass, fillAmount) => {
   const beer = { 
-    area: glass.area.initial * fillAmount,
-    verticalHeight: glass.area.initial * fillAmount / glass.width,
-    isTriangle: false,
+    width: 2 * glass.height,
+    height: glass.area.initial * fillAmount / glass.width,
   };
   console.log('beer:', beer);
-  glass.area.available = glass.initial - beer.area;
   return beer;
 }
 
 const glass = getGlass(40, 100);
 const beer = freshPint(glass, 0.9);
 
-const drink = (beer, overflow) => {
-  const interval = 5;
-  for (i = 0; i < interval; i++) {
-    return setInterval((beer) => { 
-      return {
-        area: beer.area - (overflow.area / interval),
-        verticalHeight: glass.area * fillAmount / glass.width,
-      }
-     }, 100);
-  };
-};
+// const drink = (angle, glassBeforePour) => {
+//   // const interval = 5;
+//   // for (i = 0; i < interval; i++) {
+//   //   return setInterval((beer) => { 
+//   //     return {
+//   //       area: beer.area - (overflow.area / interval),
+//   //       verticalHeight: glass.area * fillAmount / glass.width,
+//   //     }
+//   //    }, 100);
+//   // };
+
+//   const glass = calculateGlassAvailable(angle, glassBeforePour);
+//   const beer = { 
+//     area: glass.area.available,
+//     height: glass.height,
+//   };
+
+//   return beer;
+// };
 
 export const tip = (angle, beer, glass) => {
-  if (beer.isTriangle) {
-
-    
-  } else {
-    const overflowTriangleArea = (glass.width * glass.width) / (2 * Math.tan(angle));
-    if (beer.area > glass.area - overflowTriangleArea) {
-      return {
-        width: glass.width,
-        verticalHeight: (glass.area - overflowTriangleArea) / glass.width,
-        area: glass.area - overflowTriangleArea,
-      }
-    }
-  }
-  return beer;
+  // pour clockwise
+  // if (angle > 0) {
+  const maxHeight = glass.height * Math.cos(angle);
+  const newHeight = beer.height > maxHeight ? maxHeight : beer.height;
+  // pour anticlockwise
+  // } else {
+  // }
+  const newBeer = { 
+    width: 2 * glass.height,
+    height: newHeight,
+  };
+  console.log('newBeer: ', newBeer);
+  return newBeer;
 }
