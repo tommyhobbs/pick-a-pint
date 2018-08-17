@@ -7,6 +7,7 @@ import * as pintCalculations from '../../utils/pintCalculations';
 const PintBackground = (props) => {
   const {absolute, alpha, beta, gamma} = props;
   const glass = pintCalculations.getGlass(window.innerWidth, window.innerHeight);
+  console.log('glass: ', glass);
   const freshPint = pintCalculations.freshPint(glass, 0.8);
   return (
     <svg xmlns='http://www.w3.org/2000/svg' width={glass.width} height={glass.height}>

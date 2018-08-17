@@ -8,7 +8,7 @@ import './App.css';
 
 class App extends Component {
   svgString = '';
-  dataUri = '';
+  dataUri = 'unset';
   state = {
     absolute: true,
     alpha: 0,
@@ -18,18 +18,24 @@ class App extends Component {
 
   handleOrientation = event => {
     const { absolute, alpha, beta, gamma } = event;
-    this.setState({ absolute, alpha, beta, gamma });
-    this.svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground absolute={this.state.absolute} alpha={this.state.alpha} beta={this.state.beta} gamma={this.state.gamma}/>));
-    this.dataUri = `url("data:image/svg+xml,${this.svgString}")`;
+    console.log('deviceOrientation: ', absolute, alpha, beta, gamma);
+    this.setState(absolute, alpha, beta, gamma);
+    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground absolute={absolute} alpha={alpha} beta={beta} gamma={gamma}/>));
+    console.log('svg string: ', svgString);
+    this.dataUri = `url("data:image/svg+xml,${svgString}")`;
   };
 
   componentDidMount() {
     window.addEventListener('deviceorientation', this.handleOrientation, true);
   };
 
+  componentWillUnmount() {
+    window.removeEventListener('deviceorientation', this.handleOrientation, true);
+  }
+
   render() {
     return (
-      <div className="App" style={{background: this.dataUri, width: window.innerWidth, height: window.innerHeight}}>
+      <div className="App" style={{background: this.dataUri }}>
         <Helmet title="Pick a Pint" />
         <div className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" />
@@ -38,7 +44,7 @@ class App extends Component {
         </div>
         <div className="Content">
           <p className="Intro">
-            Currently in development so please, watch this space!
+            Currently in development so please, watch this space! {this.state.gamma}
           </p>
         </div>
         <div className="Footer">
