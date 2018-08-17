@@ -7,11 +7,29 @@ import PintBackground from './components/pintBackground/PintBackground';
 import './App.css';
 
 class App extends Component {
+  svgString = '';
+  dataUri = '';
+  state = {
+    absolute: true,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  };
+
+  handleOrientation = event => {
+    const { absolute, alpha, beta, gamma } = event;
+    this.setState({ absolute, alpha, beta, gamma });
+    this.svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground absolute={this.state.absolute} alpha={this.state.alpha} beta={this.state.beta} gamma={this.state.gamma}/>));
+    this.dataUri = `url("data:image/svg+xml,${this.svgString}")`;
+  };
+
+  componentDidMount() {
+    window.addEventListener('deviceorientation', this.handleOrientation, true);
+  };
+
   render() {
-    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground />));
-    const dataUri = `url("data:image/svg+xml,${svgString}")`;
     return (
-      <div className="App" style={{background: dataUri, width: window.innerWidth, height: window.innerHeight}}>
+      <div className="App" style={{background: this.dataUri, width: window.innerWidth, height: window.innerHeight}}>
         <Helmet title="Pick a Pint" />
         <div className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" />
