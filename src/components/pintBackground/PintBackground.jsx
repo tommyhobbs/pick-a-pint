@@ -11,13 +11,9 @@ const PintBackground = (props) => {
   return (
     <DeviceOrientation>
       {({ absolute, alpha, beta, gamma }) => (
-        <div className="PintBackground">
-          {/* <p>{`Gamma: ${gamma}`}</p> */}
-          {/* <img src={beer} style={{width: '200px', paddingLeft: '50px', transform: `rotate(${gamma}deg)`}}/> */}
-          <svg width={glass.width} height={glass.height}>
-            <rect width={beer.width} height={pintCalculations.tip(gamma, freshPint, glass).height} style={{fill: 'rgb(0,0,255)', 'stroke-width': 3, stroke: 'rgb(0,0,0)', transform: `rotate(${gamma}deg)`}} />
-          </svg>
-        </div>
+        <svg width={glass.width} height={glass.height}>
+          <rect width={beer.width} height={pintCalculations.tip(gamma, freshPint, glass).height} style={{fill: 'rgb(0,0,255)', strokeWidth: 3, stroke: 'rgb(0,0,0)', transform: `rotate(${gamma}deg)`}} />
+        </svg>
       )}
   </DeviceOrientation>
   );

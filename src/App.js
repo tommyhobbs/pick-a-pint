@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import { renderToStaticMarkup } from 'react-dom/server'
 import linkedIn from './assets/LinkedIn-66px.png';
 import gitHub from './assets/GitHub-64px.png';
 import PintBackground from './components/pintBackground/PintBackground';
@@ -7,8 +8,10 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground />));
+    const dataUri = `url("data:image/svg+xml,${svgString}")`;
     return (
-      <div className="App">
+      <div className="App" style={{background: dataUri}}>
         <Helmet title="Pick a Pint" />
         <div className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" />
@@ -19,7 +22,6 @@ class App extends Component {
           <p className="Intro">
             Currently in development so please, watch this space!
           </p>
-          <PintBackground />
         </div>
         <div className="Footer">
           <a href='https://www.linkedin.com/in/tomghobbs/' target="_blank" rel="noopener noreferrer">
