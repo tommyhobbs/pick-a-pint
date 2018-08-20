@@ -1,12 +1,17 @@
 .App {
+  font-family: 'Roboto';
+  text-align: center;
+  background-color: #F3CD57;
+  color: black;
+}
+
+.Content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  font-family: 'Roboto';
-  text-align: center;
+
   /* background-color: #F3CD57; */
-  color: black;
 }
 
 .App-header {

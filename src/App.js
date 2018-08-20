@@ -10,22 +10,22 @@ class App extends Component {
   svgString = '';
   dataUri = 'unset';
   state = {
-    absolute: true,
-    alpha: 0,
-    beta: 0,
     gamma: 0,
+    dataUri: '',
   };
 
   handleOrientation = event => {
-    const { absolute, alpha, beta, gamma } = event;
-    console.log('deviceOrientation: ', absolute, alpha, beta, gamma);
-    this.setState(absolute, alpha, beta, gamma);
-    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground absolute={absolute} alpha={alpha} beta={beta} gamma={gamma}/>));
-    console.log('svg string: ', svgString);
-    this.dataUri = `url("data:image/svg+xml,${svgString}")`;
+    const gamma = Math.round(event.gamma);
+    console.log('gamma: ', gamma);
+    this.setState(gamma);
   };
 
   componentDidMount() {
+    if (window.DeviceOrientationEvent) {
+      console.log("DeviceOrientation is supported");
+     } else if (window.OrientationEvent) {
+      console.log("MozOrientation is supported");
+     }
     window.addEventListener('deviceorientation', this.handleOrientation, true);
   };
 
@@ -34,27 +34,35 @@ class App extends Component {
   }
 
   render() {
+    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={this.state.gamma} />));
+    console.log('svg string: ', svgString);
+    const dataUri = `url("data:image/svg+xml,${svgString}")`;
+    console.log('dataUri: ', dataUri);
     return (
-      <div className="App" style={{background: this.dataUri }}>
+      <div className="App">
         <Helmet title="Pick a Pint" />
-        <div className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" />
-          <span role="img"  className="App-logo" aria-label="pint emoji">🍺</span> */}
-          <h1 className='App-title'>Pick a Pint!</h1>
-        </div>
-        <div className="Content">
-          <p className="Intro">
-            Currently in development so please, watch this space! {this.state.gamma}
-          </p>
-        </div>
-        <div className="Footer">
-          <a href='https://www.linkedin.com/in/tomghobbs/' target="_blank" rel="noopener noreferrer">
-            <img src={linkedIn} className="Logo LinkedIn" alt="LinkedIn Logo" />
-          </a>
-          <a href='https://github.com/tommyhobbs/pick-a-pint' target="_blank" rel="noopener noreferrer">
-            <img src={gitHub} className="Logo GitHub" alt="GitHub Logo" />
-          </a>
-          <p>a silly idea by Tom Hobbs </p>
+        <div className="background" style={{background: dataUri, transform: `rotate(${this.state.gamma}deg)`}} >
+          <div className="Content">
+            <div className="App-header">
+              {/* <img src={logo} className="App-logo" alt="logo" />
+              <span role="img"  className="App-logo" aria-label="pint emoji">🍺</span> */}
+              <h1 className='App-title'>Pick a Pint!</h1>
+            </div>
+            <div className="Body">
+              <p className="Intro">
+                Currently in development so please, watch this space! {this.state.gamma}
+              </p>
+            </div>
+            <div className="Footer">
+              <a href='https://www.linkedin.com/in/tomghobbs/' target="_blank" rel="noopener noreferrer">
+                <img src={linkedIn} className="Logo LinkedIn" alt="LinkedIn Logo" />
+              </a>
+              <a href='https://github.com/tommyhobbs/pick-a-pint' target="_blank" rel="noopener noreferrer">
+                <img src={gitHub} className="Logo GitHub" alt="GitHub Logo" />
+              </a>
+              <p>a silly idea by Tom Hobbs </p>
+            </div>
+          </div>
         </div>
       </div>
     );
