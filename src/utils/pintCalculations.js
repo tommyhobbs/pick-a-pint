@@ -7,8 +7,8 @@ export const getGlass = (width, height) => {
 
 export const freshPint = (glass, fillAmount) => {
   const beer = { 
-    width: 2 * glass.height,
-    height: glass.height * fillAmount,
+    width: Math.round(2 * glass.height),
+    height: Math.round(glass.height * fillAmount),
   };
   console.log('beer:', beer);
   return beer;
@@ -16,20 +16,25 @@ export const freshPint = (glass, fillAmount) => {
 
 export const tip = (angle, beer, glass) => {
   // pour clockwise
-  // if (angle > 0) {
-  const maxHeight = glass.height * Math.cos(angle);
-  const newHeight = beer.height > maxHeight ? maxHeight : beer.height;
-  // pour anticlockwise
-  // } else {
-  // }
-  const newBeer = { 
-    width: 2 * glass.height,
-    height: newHeight,
-  };
-  console.log('newBeer: ', newBeer);
-  
-  // return drink(beer, newBeer);
-  return newBeer;
+  if (angle > 0) {
+    console.log('pintCalculations:tip angle: ', angle);
+    const maxHeight = Math.round(glass.height * Math.cos(angle));
+    console.log('pintCalculations:tip maxHeight: ', maxHeight);
+    const newHeight = beer.height > maxHeight ? maxHeight : beer.height;
+    console.log('pintCalculations:tip newHeight: ', newHeight);
+    // pour anticlockwise
+    // } else {
+    // }
+    const newBeer = { 
+      width: 2 * glass.height,
+      height: newHeight,
+    };
+    console.log('pintCalculations:tip newBeer: ', newBeer);
+    
+    // return drink(beer, newBeer);
+    return newBeer;
+  }
+  return beer;
 };
 
 export const drink = (oldBeer, newBeer) => {
