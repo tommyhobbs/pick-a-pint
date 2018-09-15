@@ -32,7 +32,8 @@ export const tip = (angle, beer, glass) => {
     console.log('pintCalculations:tip newBeer: ', newBeer);
     
     // return drink(beer, newBeer);
-    return newBeer;
+    return (drink(beer, newBeer));
+    // return newBeer;
   }
   return beer;
 };

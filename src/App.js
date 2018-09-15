@@ -8,9 +8,10 @@ import './App.css';
 
 class App extends Component {
   isFreshPint = true;
+  svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={0} width={window.innerWidth} height={window.innerHeight}/>));
   state = {
     gamma: 0,
-    dataUri: '',
+    dataUri: `url("data:image/svg+xml,${this.svgString}`,
   };
 
   componentDidMount() {
@@ -29,6 +30,11 @@ class App extends Component {
 
   componentDidUpdate() {
     this.isFreshPint = false;
+    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={this.state.gamma} width={window.innerWidth} height={window.innerHeight}/>));
+    this.isFreshPint = !this.isFreshPint;
+    console.log('svg string: ', svgString);
+    const dataUri = `url("data:image/svg+xml,${svgString}")`;
+    this.state.dataUri !== dataUri && this.setState({dataUri});
   }
 
   componentWillUnmount() {
@@ -36,15 +42,10 @@ class App extends Component {
   }
 
   render() {
-    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={this.state.gamma} width={window.innerWidth} height={window.innerHeight}/>));
-    this.isFreshPint = !this.isFreshPint;
-    console.log('svg string: ', svgString);
-    const dataUri = `url("data:image/svg+xml,${svgString}")`;
-    console.log('dataUri: ', dataUri);
     return (
       <div className="App">
         <Helmet title="Pick a Pint" />
-        <div className="background" style={{background: dataUri }} >
+        <div className="background" style={{background: this.state.dataUri }} >
           <div className="Content">
             <div className="App-header">
               {/* <img src={logo} className="App-logo" alt="logo" />
