@@ -3,9 +3,9 @@ applications:
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   memory: 64M
   instances: 1
-  domain: us-east.mybluemix.net
-  name: pick-a-pint-dev
-  host: pick-a-pint-dev
+  domain: mybluemix.net
+  name: pickapint-dev
+  host: pickapint-dev
   stack: cflinuxfs2
   env:
     FORCE_HTTPS: true
