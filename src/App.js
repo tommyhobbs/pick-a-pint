@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <Helmet title="Pick a Pint" />
-        <div className="background" style={{background: this.state.dataUri }} >
+        <div className="background" style={{background: this.state.dataUri, backgroundPosition: 'bottom' }} >
           <div className="Content">
             <div className="App-header">
               {/* <img src={logo} className="App-logo" alt="logo" />

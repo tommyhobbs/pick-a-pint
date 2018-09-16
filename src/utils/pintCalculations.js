@@ -49,11 +49,11 @@ export const drink = (oldBeer, newBeer) => {
     // eslint-disable-next-line 
     setTimeout(() => { 
       beer = {
-        width: beer.width,
+        width: oldBeer.width,
         height: oldBeer.height - (step * interval),
       }
       console.log('beer getting poured: ',beer);
+      return beer;
      }, 200);    
   };
-  return beer;
 };

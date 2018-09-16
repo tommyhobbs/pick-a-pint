@@ -17,19 +17,26 @@ class PintBackground extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { gamma } = this.props;
-    const newBeer = pintCalculations.drink(gamma, prevState.beer, prevState.glass);
-
-    newBeer !== prevState.beer && this.setState({beer: newBeer});
-  }
-
   render() {
-    const { beer } = this.state;
+    const { beer, glass } = this.state;
     const { gamma } = this.props;
+
+    const transformOrigin = gamma > 0 ? 'left' : 'right';
+    const newBeer = pintCalculations.drink(gamma, beer, glass);
+    newBeer !== beer && this.setState({ beer: newBeer });
     return (
       <svg xmlns='http://www.w3.org/2000/svg' width={beer.width} >
-        <rect width={beer.width} height={beer.height} style={{fill:'#F3CD57', transform: `rotate(${gamma}deg)`}}/>
+        <rect 
+          width={beer.width}
+          height={beer.height}
+          style={
+            {
+              fill:'#F3CD57',
+              transform: `rotate(${gamma}deg)`,
+              transformOrigin: `bottom ${transformOrigin}`
+            }
+          }
+        />
       }} />
       </svg>
     );
