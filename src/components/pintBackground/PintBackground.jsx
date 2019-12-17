@@ -12,21 +12,24 @@ const PintBackground = props => {
     <svg xmlns="http://www.w3.org/2000/svg" width={width}>
       <rect
         width={width}
-        height={height}
+        height={0.1 * height}
         style={{
-          fill: "#F3CD57",
-          transform: `scaleX(${flip}) translate(${xPos}px, ${poured}px) skewY(${angle}deg)`
+          fill: "lightgrey",
+          transform: `scaleX(${flip}) translate(${xPos}px, ${poured -
+            0.1 * height}px) skewY(${angle}deg)`,
+          transitionProperty: "translate",
+          transitionDelay: "0.5s"
         }}
       />
       <rect
-        width="10"
-        height="10"
+        width={width}
+        height={height}
         style={{
-          stroke: "#006600",
-          fill: "#00cc00"
+          fill: "#F3CD57",
+          transform: `scaleX(${flip}) translate(${xPos}px, ${poured}px) skewY(${angle}deg)`,
+          transitionProperty: "translate",
+          transitionDelay: "0.5s"
         }}
-        x={xPos}
-        y={0}
       />
     </svg>
   );
