@@ -8,7 +8,7 @@ import './App.css';
 
 class App extends Component {
   isFreshPint = true;
-  svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={0} width={window.innerWidth} height={window.innerHeight}/>));
+  svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={0} width={window.innerWidth} height={window.innerHeight} />));
   state = {
     gamma: 0,
     dataUri: `url("data:image/svg+xml,${this.svgString}`,
@@ -19,22 +19,22 @@ class App extends Component {
       console.log('device orientation is supported 😁');
       let self = this;
       window.addEventListener('deviceorientation', event => {
-        console.log(event);
-        console.log('typeof gamma: ', typeof event.gamma);
-        const gamma = Math.round(Number(event.gamma));
-        console.log('gamma: ', gamma);
-        self.setState({...self.state, gamma});
+        // console.log(event);
+        // console.log('typeof gamma: ', typeof event.gamma);
+        // const gamma = Math.round(Number(event.gamma));
+        // console.log('gamma: ', gamma);
+        self.setState({ ...self.state, gamma: event.gamma });
       }, true);
     }
   };
 
   componentDidUpdate() {
     this.isFreshPint = false;
-    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={this.state.gamma} width={window.innerWidth} height={window.innerHeight}/>));
+    const svgString = encodeURIComponent(renderToStaticMarkup(<PintBackground gamma={this.state.gamma} width={window.innerWidth} height={window.innerHeight} />));
     this.isFreshPint = !this.isFreshPint;
-    console.log('svg string: ', svgString);
+    // console.log('svg string: ', svgString);
     const dataUri = `url("data:image/svg+xml,${svgString}")`;
-    this.state.dataUri !== dataUri && this.setState({dataUri});
+    this.state.dataUri !== dataUri && this.setState({ dataUri });
   }
 
   componentWillUnmount() {
@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <Helmet title="Pick a Pint" />
-        <div className="background" style={{background: this.state.dataUri, backgroundPosition: 'bottom' }} >
+        <div className="background" style={{ background: this.state.dataUri, backgroundPosition: 'bottom' }} >
           <div className="Content">
             <div className="App-header">
               {/* <img src={logo} className="App-logo" alt="logo" />
@@ -58,7 +58,7 @@ class App extends Component {
               </p>
             </div>
             <div className="Footer">
-              <a href='https://www.linkedin.com/in/tomghobbs/' target="_blank" rel="noopener noreferrer">
+              <a href='https://www.linkedin.com/in/tommyhobbs/' target="_blank" rel="noopener noreferrer">
                 <img src={linkedIn} className="Logo LinkedIn" alt="LinkedIn Logo" />
               </a>
               <a href='https://github.com/tommyhobbs/pick-a-pint' target="_blank" rel="noopener noreferrer">

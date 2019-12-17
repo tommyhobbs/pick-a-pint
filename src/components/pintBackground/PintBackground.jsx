@@ -2,42 +2,42 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import beer from '../../assets/beer.png';
 import './pintBackground.css';
-import * as pintCalculations from '../../utils/pintCalculations';
 
 class PintBackground extends Component {
-  constructor(props) {
-    super(props);
-    const { width, height } = this.props;
-    const glass = pintCalculations.getGlass(width, height);
-    const freshPint = pintCalculations.freshPint(glass, 0.8);
-    console.log('Tasty fresh beer 🤤🍺', freshPint);
-    this.state = {
-      glass: glass,
-      beer: freshPint,
-    };
-  }
-
   render() {
-    const { beer, glass } = this.state;
-    const { gamma } = this.props;
-
-    const transformOrigin = gamma > 0 ? 'left' : 'right';
-    const newBeer = pintCalculations.drink(gamma, beer, glass);
-    newBeer !== beer && this.setState({ beer: newBeer });
+    const { gamma, width, height } = this.props
+    const fillLevel = (Math.abs(gamma) / 90) * height
+    const xCenter = width / 2 + ((gamma / 90) * width / 2)
+    console.log('width: ' + width)
+    console.log('fillLevel: ' + fillLevel)
+    const origin = `${xCenter}px ${fillLevel}px`
+    console.log('origin: ', origin)
     return (
-      <svg xmlns='http://www.w3.org/2000/svg' width={beer.width} >
-        <rect 
-          width={beer.width}
-          height={beer.height}
+      <svg xmlns='http://www.w3.org/2000/svg' width={width} >
+        <rect
+          width={Math.sqrt((width * width) + (height * height))}
+          height={height}
           style={
             {
-              fill:'#F3CD57',
-              transform: `rotate(${gamma}deg)`,
-              transformOrigin: `bottom ${transformOrigin}`
+              fill: '#F3CD57',
+              transform: `rotate(${-gamma}deg)`,
+              transformOrigin: origin
             }
           }
+          y={fillLevel}
         />
-      }} />
+        <rect
+          width='10'
+          height='10'
+          style={
+            {
+              stroke: '#006600',
+              fill: '#00cc00'
+            }
+          }
+          x={xCenter}
+          y={fillLevel}
+        />
       </svg>
     );
   }

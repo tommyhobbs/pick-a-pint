@@ -6,14 +6,14 @@
     "node-sass-chokidar": "^1.3.0",
     "npm-run-all": "^4.1.3",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-device-orientation": "0.0.2",
-    "react-dom": "^16.4.1",
+    "react": "^16.12.0",
+    "react-device-orientation": "^0.0.2",
+    "react-dom": "^16.12.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^3.3.0",
     "react-snapshot": "^1.3.0",
-    "styled-components": "^3.3.3"
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start-js": "react-scripts start",
@@ -34,7 +34,6 @@
     "serve": "yarn build && bx cf push"
   },
   "devDependencies": {
-    "jest": "^23.4.2",
     "node-sass": "^4.9.2",
     "prettier": "1.14.2",
     "sass-loader": "^7.0.3"
@@ -52,6 +51,18 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run test:lint:js"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
