@@ -72,7 +72,7 @@ class App extends Component {
             <div className="App-header">
               {/* <img src={logo} className="App-logo" alt="logo" />
               <span role="img"  className="App-logo" aria-label="pint emoji">🍺</span> */}
-              <h1 className="App-title">Pick a Pint!</h1>
+              {/* <h1 className="App-title">Pick a Pint!</h1> */}
             </div>
             <div className="Footer">
               <a
