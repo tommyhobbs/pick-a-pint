@@ -15,6 +15,14 @@ const Pint = props => {
       transition: 'top 0.5s linear'
     }}
     >
+      <div style={{
+        position: 'fixed',
+        backgroundColor: "#FFF2CC",
+        width: `${width}px`,
+        height: `${height / 10}px`,
+        transition: 'top 0.5s linear'
+      }}
+      />
       {children}
     </div>
   )
