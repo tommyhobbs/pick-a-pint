@@ -18,19 +18,24 @@ class App extends Component {
     )
   );
   state = {
+    supported: false,
     gamma: 0,
     poured: 0,
     dataUri: `url("data:image/svg+xml,${this.svgString}`
   };
 
   componentDidMount() {
-    window.addEventListener(
-      "deviceorientation",
-      event => {
-        this.setState({ gamma: event.gamma });
-      },
-      true
-    );
+    if (window.DeviceOrientationEvent) {
+      this.setState({ supported: true })
+      console.log("device orientation is supported 😁");
+      window.addEventListener(
+        "deviceorientation",
+        event => {
+          this.setState({ gamma: event.gamma });
+        },
+        true
+      );
+    }
   }
 
   componentDidUpdate() {
@@ -62,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const { gamma, poured } = this.state;
+    const { gamma, poured, supported } = this.state;
     const width = window.innerWidth;
     const height = window.innerHeight;
     return (
@@ -72,6 +77,8 @@ class App extends Component {
         <Pint width={width} height={height} gamma={gamma} poured={poured} >
           <div className="Content">
             <div className="App-header">
+              <span role="img" className="App-logo" aria-label="pint emoji">{supported ? '👍' : '👎'}</span>
+              {/* <h1 className="App-title">Pick a Pint!</h1> */}
             </div>
             <div className="Footer">
               <a
