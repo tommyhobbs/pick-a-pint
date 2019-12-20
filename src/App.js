@@ -5,6 +5,7 @@ import linkedIn from "./assets/LinkedIn-66px.png";
 import gitHub from "./assets/GitHub-64px.png";
 import PintBackground from "./components/pintBackground/PintBackground";
 import "./App.css";
+import Pint from "./components/pint/pint";
 
 class App extends Component {
   svgString = encodeURIComponent(
@@ -64,15 +65,16 @@ class App extends Component {
   }
 
   render() {
+    const { gamma, poured } = this.state;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     return (
-      <div className="App">
+      <div className="App" style={{ height: height, overflow: 'hidden' }}>
         <Helmet title="Pick a Pint" />
-        <div className="background" style={{ background: this.state.dataUri }}>
+        {/* <div className="background" style={{ background: this.state.dataUri }}> */}
+        <Pint width={width} height={height} gamma={gamma} poured={poured} >
           <div className="Content">
             <div className="App-header">
-              {/* <img src={logo} className="App-logo" alt="logo" />
-              <span role="img"  className="App-logo" aria-label="pint emoji">🍺</span> */}
-              {/* <h1 className="App-title">Pick a Pint!</h1> */}
             </div>
             <div className="Footer">
               <a
@@ -96,8 +98,8 @@ class App extends Component {
               <p>a silly idea by Tom Hobbs </p>
             </div>
           </div>
-        </div>
-      </div>
+        </Pint>
+      </div >
     );
   }
 }
