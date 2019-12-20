@@ -24,16 +24,13 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (window.DeviceOrientationEvent) {
-      console.log("device orientation is supported 😁");
-      window.addEventListener(
-        "deviceorientation",
-        event => {
-          this.setState({ gamma: event.gamma });
-        },
-        true
-      );
-    }
+    window.addEventListener(
+      "deviceorientation",
+      event => {
+        this.setState({ gamma: event.gamma });
+      },
+      true
+    );
   }
 
   componentDidUpdate() {
