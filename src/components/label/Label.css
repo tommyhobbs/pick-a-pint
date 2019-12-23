@@ -1,0 +1,11 @@
+.Label {
+  position: absolute;
+  bottom: 0px;
+  left: 50%; 
+  transform: translateX(-50%);
+}
+
+.logo {
+  padding: 0px 10px;
+  height: 40px;
+}

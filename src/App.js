@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import { renderToStaticMarkup } from "react-dom/server";
-import linkedIn from "./assets/LinkedIn-66px.png";
-import gitHub from "./assets/GitHub-64px.png";
-import PintBackground from "./components/pintBackground/PintBackground";
-import "./App.css";
-import Pint from "./components/pint/pint";
+
+import Pint from "./components/pint/Pint";
+import Glass from "./components/glass/Glass";
+import Label from "./components/label/Label";
+
+import "./App.css"
 
 class App extends Component {
   state = {
@@ -42,42 +42,16 @@ class App extends Component {
   }
 
   render() {
-    const { gamma, poured, supported } = this.state;
+    const { gamma, poured } = this.state;
     const width = window.innerWidth;
     const height = window.innerHeight;
     return (
-      <div className="App" style={{ height: height, overflow: 'hidden' }}>
+      <div className="App" >
         <Helmet title="Pick a Pint" />
-        {/* <div className="background" style={{ background: this.state.dataUri }}> */}
-        <Pint width={width} height={height / 10} gamma={gamma} poured={poured} style={{ backgroundColor: 'lightgrey' }} />
-        <Pint width={width} height={height} gamma={gamma} poured={poured} >
-          <div className="Content">
-            <div className="App-header">
-              {/* <h1 className="App-title">Pick a Pint!</h1> */}
-            </div>
-            <div className="Footer">
-              <a
-                href="https://www.linkedin.com/in/tommyhobbs/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={linkedIn}
-                  className="Logo LinkedIn"
-                  alt="LinkedIn Logo"
-                />
-              </a>
-              <a
-                href="https://github.com/tommyhobbs/pick-a-pint"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={gitHub} className="Logo GitHub" alt="GitHub Logo" />
-              </a>
-              <p>a silly idea by Tom Hobbs </p>
-            </div>
-          </div>
-        </Pint>
+        <Glass width={width} height={height}>
+          <Label />
+          <Pint width={width} height={height} gamma={gamma} poured={poured} />
+        </Glass>
       </div >
     );
   }
