@@ -65,7 +65,7 @@ class App extends Component {
         <Glass width={width} height={height}>
           <Label />
           {!empty && <Pint width={width} height={height} gamma={gamma} poured={poured} />}
-          {empty && <div className="empty">Drag <span role="img" aria-label="down">⬇️</span> from the top to fill 'er back up!</div>}
+          {empty && <div className="empty">Drag <span role="img" aria-label="down">⬇️</span> from the top for a refill!</div>}
           {this.prompInstall && <div> Please install</div>}
         </Glass>
       </div >
