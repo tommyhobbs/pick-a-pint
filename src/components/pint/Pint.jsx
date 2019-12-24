@@ -9,7 +9,7 @@ const Pint = props => {
       zIndex: -1,
       width: `${width}px`,
       height: `${height}px`,
-      backgroundColor: "#F3CD57",
+      backgroundImage: `linear-gradient(#AE722D, #F3CF1F 50%, #AE722D 100%)`,
       top: `${poured}px`,
       right: `${xPos}px`,
       transform: `skewY(${-gamma}deg) scale(${1 + Math.abs(gamma) / 90})`,
@@ -19,7 +19,7 @@ const Pint = props => {
     >
       <div style={{
         position: 'fixed',
-        backgroundColor: "#FFF2CC",
+        backgroundColor: "#EADEB4",
         width: `${width}px`,
         height: `${height / 10}px`,
         transition: 'top 0.5s linear'

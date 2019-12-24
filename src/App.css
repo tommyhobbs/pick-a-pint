@@ -1,6 +1,10 @@
 .App {
   font-family: 'Roboto';
   text-align: center;
-  color: white;
   display: flex;
+}
+
+.empty {
+  font-size: large;
+  padding: 10px;
 }

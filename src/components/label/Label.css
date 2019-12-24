@@ -1,9 +1,19 @@
 .Label {
+  color: rgba(255,255,255,0.8);
   position: absolute;
-  bottom: 0px;
+  bottom: 60%;
   left: 50%; 
   transform: translateX(-50%);
+  font-family: 'Charm', cursive;
 }
+
+h1 {
+  font-weight: 400;
+  font-size: -webkit-xxx-large;
+  margin: 0;
+}
+
+a { color: inherit; } 
 
 .logo {
   padding: 0px 10px;

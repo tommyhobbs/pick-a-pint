@@ -6,7 +6,7 @@ const Pint = props => {
     <div style={{
       width: `${width}px`,
       height: `${height}px`,
-      backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0) -10%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0) 50%)`
+      backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0) , rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0) 40%)`
     }}
     >
       {children}

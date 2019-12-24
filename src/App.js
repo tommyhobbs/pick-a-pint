@@ -9,9 +9,13 @@ import "./App.css"
 
 class App extends Component {
   state = {
+    beta: 0,
     gamma: 0,
-    poured: 0
+    poured: 0,
+    empty: false
   };
+
+  prompInstall = null
 
   componentDidMount() {
     if (window.DeviceOrientationEvent) {
@@ -19,21 +23,31 @@ class App extends Component {
       window.addEventListener(
         "deviceorientation",
         event => {
-          this.setState({ gamma: event.gamma });
+          this.setState({ beta: event.beta, gamma: event.gamma });
         },
         true
       );
     }
+    window.addEventListener("beforeinstallprompt", event => {
+
+      // Create your custom "add to home screen" button here if needed.
+      // Keep in mind that this event may be called multiple times, 
+      // so avoid creating multiple buttons!
+      this.promptInstall = () => event.prompt();
+    });
   }
 
   componentDidUpdate() {
+    const height = window.innerHeight;
     if (
-      this.state.poured <
-      (Math.abs(this.state.gamma) / 90) * window.innerHeight
+      this.state.poured < (Math.abs(this.state.gamma) / 90) * height && this.state.beta >= 0
     ) {
-      this.setState({
-        poured: (Math.abs(this.state.gamma) / 90) * window.innerHeight
-      });
+      console.log(`gamma: `, this.state.gamma);
+      console.log('beta: ', this.state.beta);
+      this.setState({ poured: (Math.abs(this.state.gamma) / 90) * height });
+    }
+    if (this.state.poured > height * 0.98 && this.state.empty === false) {
+      this.setState({ empty: true })
     }
   }
 
@@ -42,7 +56,7 @@ class App extends Component {
   }
 
   render() {
-    const { gamma, poured } = this.state;
+    const { gamma, poured, empty } = this.state;
     const width = window.innerWidth;
     const height = window.innerHeight;
     return (
@@ -50,7 +64,9 @@ class App extends Component {
         <Helmet title="Pick a Pint" />
         <Glass width={width} height={height}>
           <Label />
-          <Pint width={width} height={height} gamma={gamma} poured={poured} />
+          {!empty && <Pint width={width} height={height} gamma={gamma} poured={poured} />}
+          {empty && <div className="empty">Drag <span role="img" aria-label="down">⬇️</span> from the top to fill 'er back up!</div>}
+          {this.prompInstall && <div> Please install</div>}
         </Glass>
       </div >
     );
