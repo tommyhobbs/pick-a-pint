@@ -12,8 +12,9 @@ const Pint = props => {
       backgroundImage: `linear-gradient(#AE722D, #F3CF1F 50%, #AE722D 100%)`,
       top: `${poured}px`,
       right: `${xPos}px`,
-      transform: `skewY(${-gamma}deg) scale(${1 + Math.abs(gamma) / 90})`,
+      transform: `skewY(${-gamma}deg) scale(${1 + (Math.abs(gamma) / 90)})`,
       transition: 'top 0.5s linear',
+      transformOrigin: 'center bottom',
       filter: `blur(4px)`
     }}
     >
@@ -22,7 +23,6 @@ const Pint = props => {
         backgroundColor: "#EADEB4",
         width: `${width}px`,
         height: `${height / 10}px`,
-        transition: 'top 0.5s linear'
       }}
       />
       {children}
