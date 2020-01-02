@@ -1,7 +1,7 @@
 .Label {
   color: rgba(255,255,255,0.8);
   position: absolute;
-  bottom: 60%;
+  bottom: 55%;
   left: 50%; 
   transform: translateX(-50%);
   font-family: 'Charm', cursive;
